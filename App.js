@@ -1,16 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import { View } from 'react-native';
+//import {Ionicons} from '@expo/vector-icons'
+import AddEntry from './components/AddEntry'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import reducer from './reducers'
+import History from './components/History'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+export default class App extends Component {
+
+  /*componentDidMount () {
+    console.log('after')
+    debugger
+    console.log('before')
+  }*/
+
+  render() {
+    return (
+      //<View style={styles.container}>
+      <Provider store={createStore(reducer)}>
+        <View style={{flex:1}}>
+          <View style={{height: 20}}/>
+          <History />
+      </View>
+      </Provider>
+      
+    );
+  }
+  
 }
 
+/*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -19,3 +40,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+*/
