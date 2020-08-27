@@ -45,7 +45,7 @@ class History extends Component {
 
         return (
             <UdaciFitnessCalendar items={entries}
-                                  renderItems={this.renderItems}
+                                  renderItem={this.renderItems}
                                   renderEmptyDate={this.renderEmptyDate}/>
         )
     }
