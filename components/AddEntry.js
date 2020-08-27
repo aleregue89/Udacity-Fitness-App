@@ -167,7 +167,7 @@ class AddEntry extends Component {
     }
 }
 
-// styling
+// styling for AddEntry
 const styles = StyleSheet.create({
     container : {
         flex: 1,
