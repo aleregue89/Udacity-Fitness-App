@@ -6,24 +6,25 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import reducer from './reducers'
 import History from './components/History'
-import {TabNavigator} from 'react-navigation'
+import {TabNavigator, createAppContainer} from 'react-navigation'
 import {purple, white} from './utils/colors'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
+import {createBottomTabNavigator, createMaterialTopTabNavigator} from 'react-navigation-tabs'
 
 //creating Tabs component
-const Tabs = TabNavigator({
+const Tabs = createBottomTabNavigator({
     History: {
       screen: History,
       navigationOptions: {
         tabBarLabel: 'History',
-        tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintcolor}/>
+        tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor}/>
       }
     },
     AddEntry: {
       screen: AddEntry,
       navigationOptions: {
         tabBarLabel: 'Add Entry',
-        tabBarIcon: ({tintColor}) => <FontAwesome name='plus-square' size={30} color={tinticolor}/>
+        tabBarIcon: ({tintColor}) => <FontAwesome name='plus-square' size={30} color={tintColor}/>
       }
     }
 }, {
