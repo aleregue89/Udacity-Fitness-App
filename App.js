@@ -62,19 +62,43 @@ const Tabs = createAppContainer(createBottomTabNavigator({
 }))
 
 
-//creating TabNavigator component
-const MainNavigator = StackNavigator({
+//creating StackNavigator component
+const Stack = createStackNavigator()
+const MainNavigator = () => (
+    <Stack.Navigator headerMode= 'screen'>
+        <Stack.Screen name= 'home'
+                      component= {Tabs}
+                      options= {{headerShow: false}}
+        />
+        <Stack.Screen name= 'EntryDetail'
+                      component= {EntryDetail}
+                      options= {{headerTintColor: white, headerStyle: {
+                          backgroundColor: purple
+                      }}}
+        />
+    </Stack.Navigator>
+)
+
+
+/*
+const MainNavigator = createAppContainer(createStackNavigator({
     Home: {
-        screen: Tabs
+        screen: Tabs,
+        navigationOptions: {
+            header: null
+        }
     },
     EntryDetail: {
         screen: EntryDetail,
-        navigationOptions: white,
-        headerStyle: {
-            backgroundColor: purple
-        }
+        navigationOptions: ({ navigation }) => ({
+            headerTintColor: white,
+            headerStyle: {
+                backgroundColor: purple
+            }
+        })
     }
-})
+}))
+*/
 
 export default class App extends Component {
 
@@ -89,8 +113,10 @@ export default class App extends Component {
             //<View style={styles.container}>
             <Provider store = {createStore(reducer)}>
                 <View style = {{ flex: 1 }} >
-                    <UdaciStatusBar backgroundColor = { purple } barStyle = 'light-content' />
-                    <MainNavigator />
+                    <NavigationContainer>
+                        <UdaciStatusBar backgroundColor = { purple } barStyle = 'light-content' />
+                        <MainNavigator />
+                    </NavigationContainer>
                 </View>
             </Provider>
         )
