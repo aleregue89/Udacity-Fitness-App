@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import { View, Platform } from 'react-native';
 //import {Ionicons} from '@expo/vector-icons'
@@ -14,7 +15,7 @@ import { StatusBar } from 'react-native'
 import Constants from 'expo-constants'
 import EntryDetail from './components/EntryDetail'
 import { StackNavigator } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-tabs'
+import { createStackNavigator } from '@react-navigation/stack'
 
 //creating StatusBar function
 function UdaciStatusBar({ backgroundColor, ...props }) {
@@ -61,7 +62,7 @@ const Tabs = createAppContainer(createBottomTabNavigator({
     }
 }))
 
-
+/*
 //creating StackNavigator component
 const Stack = createStackNavigator()
 const MainNavigator = () => (
@@ -110,15 +111,15 @@ export default class App extends Component {
 
     render() {
         return (
-            //<View style={styles.container}>
-            <Provider store = {createStore(reducer)}>
+            <NavigationContainer>
+                //<View style={styles.container}></View>
+                <Provider store = {createStore(reducer)}>
                 <View style = {{ flex: 1 }} >
-                    <NavigationContainer>
-                        <UdaciStatusBar backgroundColor = { purple } barStyle = 'light-content' />
-                        <MainNavigator />
-                    </NavigationContainer>
+                    <UdaciStatusBar backgroundColor = { purple } barStyle = 'light-content' />
+                    <Tabs />
                 </View>
             </Provider>
+            </NavigationContainer>
         )
     }
 }
