@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { View, Platform } from 'react-native';
+import { View, Platform, StyleSheet } from 'react-native';
 //import {Ionicons} from '@expo/vector-icons'
 import AddEntry from './components/AddEntry'
 import { createStore } from 'redux'
@@ -8,14 +8,15 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import History from './components/History'
 import { TabNavigator, createAppContainer } from 'react-navigation'
+import { NavigationContainer } from '@react-navigation/native'
 import { purple, white } from './utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation-tabs'
 import { StatusBar } from 'react-native'
 import Constants from 'expo-constants'
 import EntryDetail from './components/EntryDetail'
-import { StackNavigator } from 'react-navigation'
-import { createStackNavigator } from '@react-navigation/stack'
+//import { createStackNavigator } from '@react-navigation/stack'
+import Live from './components/Live'
 
 //creating StatusBar function
 function UdaciStatusBar({ backgroundColor, ...props }) {
@@ -40,6 +41,13 @@ const Tabs = createAppContainer(createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: 'Add Entry',
             tabBarIcon: ({ tintColor }) => <FontAwesome name = 'plus-square' size = { 30 } color = { tintColor }/>     
+        }
+    },
+    Live: {
+        screen: Live,
+        navigationOptions: {
+            tabBarLabel: 'Live',
+            tabBarIcon: ({ tintColor }) => <Ionicons name = 'ios-speedometer' size = {30} color = {tintColor}/>
         }
     }
 }, {
@@ -112,7 +120,7 @@ export default class App extends Component {
     render() {
         return (
             <NavigationContainer>
-                //<View style={styles.container}></View>
+                
                 <Provider store = {createStore(reducer)}>
                 <View style = {{ flex: 1 }} >
                     <UdaciStatusBar backgroundColor = { purple } barStyle = 'light-content' />
