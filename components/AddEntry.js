@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {View, Text, Platform, StyleSheet} from 'react-native'
-import {getMetricMetaInfo} from '../utils/helpers'
+import {clearLocalNotification, getMetricMetaInfo, setLocalNotification} from '../utils/helpers'
 import UdaciSlider from './UdaciSlider'
 import UdaciSleppers from './UdaciSleppers'
 import DateHeader from './DateHeader'
@@ -88,12 +88,16 @@ class AddEntry extends Component {
         this.props.dispatch(addEntry({
             [key] : entry
         }))
+
         // navigate to home
         this.toHome()
 
         // save to "db"
         submitEntry({key, entry})
+        
         // clean notifications
+        clearLocalNotification()
+            .then(setLocalNotification)
 
         this.setState (() => ({
             run : 0,

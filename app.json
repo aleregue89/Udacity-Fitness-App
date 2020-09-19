@@ -1,5 +1,7 @@
 {
+  "orientation": "portrait",
   "name": "UdaciFitness",
+  "description": "The best triathlon tracker ever",
   "displayName": "UdaciFitness",
   "expo": {
     "name": "UdaciFitness",
